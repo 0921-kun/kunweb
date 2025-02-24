@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日外卖优惠 - 红包领券中心</title>
+    <style>
+        :root {
+            --primary-color: #FF3366;
+            --secondary-color: #20B2AA;
+            --safe-color: #4CAF50;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .platform-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .coupon-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #FF6B6B, #FF3366);
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .coupon-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .video-tutorial {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .video-tutorial iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .time-counter {
+            background: var(--safe-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .coupon-btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: var(--primary-color); text-align: center;">🍚 每日外卖优惠</h1>
+        <div class="time-counter">今日更新：2023-09-25 09:00</div>
+    </header>
+
+    <!-- 美团专区 -->
+    <section class="platform-section">
+        <h2 style="color: #FFB300;">美团外卖双券攻略</h2>
+        <div class="step-indicator">
+            <div class="step-number">1</div>
+            <h3>基础大红包领取</h3>
+        </div>
+        <button class="coupon-btn" onclick="trackClick('meituan_primary')">点击领取美团基础券</button>
+
+        <div class="step-indicator">
+            <div class="step-number">2</div>
+            <h3>叠加神券领取</h3>
+        </div>
+        <button class="coupon-btn" onclick="trackClick('meituan_extra')">点击领取美团叠加券</button>
+    </section>
+
+    <!-- 饿了么专区 -->
+    <section class="platform-section">
+        <h2 style="color: #1890FF;">饿了么三重礼包</h2>
+        <div class="step-indicator">
+            <div class="step-number">1</div>
+            <h3>通用红包翻倍领</h3>
+        </div>
+        <button class="coupon-btn" onclick="trackClick('eleme_step1')">STEP1：领取翻倍红包</button>
+
+        <div class="step-indicator">
+            <div class="step-number">2</div>
+            <h3>8元独家礼包</h3>
+        </div>
+        <button class="coupon-btn" onclick="trackClick('eleme_step2')">STEP2：领取独家红包</button>
+
+        <div class="step-indicator">
+            <div class="step-number">3</div>
+            <h3>店铺叠加券</h3>
+        </div>
+        <button class="coupon-btn" onclick="trackClick('eleme_step3')">STEP3：领取叠加券</button>
+    </section>
+
+    <!-- 教程专区 -->
+    <section class="platform-section">
+        <h2>📺 叠加使用教程</h2>
+        <div class="video-tutorial">
+            <iframe src="//player.bilibili.com/player.html?aid=123456789" 
+                    scrolling="no" 
+                    frameborder="no" 
+                    allowfullscreen="true">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- 安全提示 -->
+    <div class="warning-box">
+        <h3>⚠️ 安全提示</h3>
+        <ul>
+            <li>所有链接均跳转至官方域名</li>
+            <li>领取后建议清除浏览器记录</li>
+            <li>如遇非官方页面请立即关闭</li>
+        </ul>
+    </div>
+
+    <script>
+        // 点击统计函数
+        function trackClick(buttonType) {
+            console.log(`Clicked: ${buttonType}`);
+            // 这里可以接入统计代码
+            redirectToTarget(buttonType);
+        }
+
+        // 跳转逻辑
+        function redirectToTarget(type) {
+            const urlMap = {
+                'meituan_primary': 'http://dpurl.cn/wiIMyEDz',
+                'meituan_extra': 'https://kzurl19.cn/7jGnyT',
+                'eleme_step1': 'https://u.ele.me/4qGSHsde',
+                'eleme_step2': 'https://kzurl13.cn/7jGn6T',
+                'eleme_step3': 'https://kzurl16.cn/7jGnQP'
+            };
+            
+            if(urlMap[type]) {
+                window.open(urlMap[type], '_blank');
+            }
+        }
+
+        // 倒计时功能示例
+        function updateCountdown() {
+            // 可扩展倒计时逻辑
+        }
+    </script>
+</body>
+</html>
