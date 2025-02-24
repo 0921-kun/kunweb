@@ -113,7 +113,7 @@
 <body>
     <header>
         <h1 style="color: var(--primary-color); text-align: center;">🍚 每日外卖优惠</h1>
-        <div class="time-counter">今日更新：2023-09-25 09:00</div>
+        <div id="liveTime" class="time-counter">正在加载时间...</div>
     </header>
 
     <!-- 美团专区 -->
@@ -204,5 +204,28 @@
             // 可扩展倒计时逻辑
         }
     </script>
+    <script>
+// 实时时间更新函数
+function updateLiveTime() {
+    const formatTime = (num) => num.toString().padStart(2, '0');
+    const now = new Date();
+    
+    const timeString = `今日更新：${now.getFullYear()}-${formatTime(now.getMonth()+1)}-${formatTime(now.getDate())} 
+                      ${formatTime(now.getHours())}:${formatTime(now.getMinutes())}`;
+    
+    document.getElementById('liveTime').textContent = timeString;
+}
+
+// 页面加载立即执行
+updateLiveTime();
+
+// 设置每分钟更新（60,000毫秒）
+const timer = setInterval(updateLiveTime, 60000);
+
+// 页面卸载时清理定时器
+window.addEventListener('beforeunload', () => {
+    clearInterval(timer);
+});
+</script>
 </body>
 </html>
